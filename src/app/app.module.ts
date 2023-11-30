@@ -13,12 +13,14 @@ import { AppRoutingModule } from './app-routing.module';
 import { IconsProviderModule } from './icons-provider.module';
 import { NzLayoutModule } from 'ng-zorro-antd/layout';
 import { NzMenuModule } from 'ng-zorro-antd/menu';
+import { FrappeGanttDirective } from './frappe-lib/frappe-gantt.directive';
 
 registerLocaleData(en);
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    FrappeGanttDirective
   ],
   imports: [
     BrowserModule,
@@ -28,7 +30,7 @@ registerLocaleData(en);
     AppRoutingModule,
     IconsProviderModule,
     NzLayoutModule,
-    NzMenuModule
+    NzMenuModule,
   ],
   providers: [
     { provide: NZ_I18N, useValue: en_US }
