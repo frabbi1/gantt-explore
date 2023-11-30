@@ -22,6 +22,22 @@
       </ngx-gantt-column>
     </ng-container>
   </ngx-gantt-table>
+  <ng-template #bar let-item="item">
+    <span
+      nz-popover nzPopoverTitle="Details" [nzPopoverContent]="details"
+      style="color: #fff">&nbsp;&nbsp;{{ item.title }} </span>
+    <ng-template #details>
+      <div>
+        Title: {{item.title}}
+      </div>
+      <div>
+        Duration: {{getDuration(item.id)}} days
+      </div>
+      <div>
+        Priority: {{getPriority(item.id)}}
+      </div>
+    </ng-template>
+  </ng-template>
 </ngx-gantt>
 
 <nz-modal [(nzVisible)]="showDetailsModalVisible" nzTitle="Details" (nzOnOk)="handleShowDetailsModalOk()" (nzOnCancel)="handleShowDetailsModalOk()">

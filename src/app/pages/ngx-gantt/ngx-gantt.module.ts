@@ -7,11 +7,14 @@ import {NzInputModule} from 'ng-zorro-antd/input';
 import {ReactiveFormsModule} from '@angular/forms';
 import {NzModalModule} from 'ng-zorro-antd/modal';
 import {NzButtonModule} from 'ng-zorro-antd/button';
+import {NzPopoverModule} from 'ng-zorro-antd/popover';
+import { TaskDetailsTemplateComponent } from './task-details-template/task-details-template.component';
 
 
 @NgModule({
   declarations: [
-    NgxGanttChartComponent
+    NgxGanttChartComponent,
+    TaskDetailsTemplateComponent
   ],
   imports: [
     NgxGanttRoutingModule,
@@ -21,6 +24,7 @@ import {NzButtonModule} from 'ng-zorro-antd/button';
     ReactiveFormsModule,
     NzModalModule,
     NzButtonModule,
+    NzPopoverModule,
   ],
   providers: [
     {

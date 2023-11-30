@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
+import {AfterViewInit, Component, OnInit, TemplateRef, ViewChild} from '@angular/core';
 import {GanttDragEvent, GanttItem, NgxGanttComponent} from '@worktile/gantt';
 import {NgxGanttDataService} from '../services/ngx-gantt-data.service';
 import {DataTypeEnum, IColumn, Task} from '../models/models';
@@ -16,7 +16,6 @@ export class NgxGanttChartComponent implements OnInit, AfterViewInit{
   loading: boolean = false;
   clickedTask!: Task;
   showDetailsModalVisible: boolean = false;
-  formGroup!: FormGroup;
   @ViewChild('gantt') ganttComponent!: NgxGanttComponent;
 
   constructor(private ganttDataService: NgxGanttDataService, private fb: FormBuilder) {}
@@ -56,6 +55,15 @@ export class NgxGanttChartComponent implements OnInit, AfterViewInit{
     const endDate = this.formatDateToYYYYMMDD(new Date(end));
     task.formGroup?.get('start')?.patchValue(startDate);
     task.formGroup?.get('finish')?.patchValue(endDate);
+  }
+
+  getPriority(id: string): number {
+    return this.tasks.find(t => t.id === id)?.priority ?? 0;
+  }
+
+  getDuration(id: string): number {
+    const task =  this.tasks.find(t => t.id === id)!;
+    return this.getDaysDuration(new Date(task.start), new Date(task.finish));
   }
 
   private initTasksAndForm(): void {
