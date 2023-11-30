@@ -3,7 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: '/ngx-gantt' },
-  { path: 'ngx-gantt', loadChildren: () => import('./pages/ngx-gantt/ngx-gantt.module').then(m => m.NgxGanttModule) },
+  { path: 'ngx-gantt', loadChildren: () => import('./pages/ngx-gantt/ngx-gantt.module').then(m => m.NgxGanttModuleApp) },
   { path: 'frappe-gantt', loadChildren: () => import('./pages/frappe-gantt/frappe-gantt.module').then(m => m.FrappeGanttModule) }
 ];
 

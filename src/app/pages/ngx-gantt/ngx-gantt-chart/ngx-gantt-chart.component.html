@@ -1,1 +1,45 @@
-ngx-gantt-chart works!
+<ngx-gantt
+    #gantt
+    [items]="this.items"
+    [selectable]="true"
+    [draggable]="true"
+    [virtualScrollEnabled]="true"
+    [loading]="loading"
+    (dragEnded)="dragEnded($event)"
+>
+  <ngx-gantt-table [draggable]="true">
+    <ng-container *ngFor="let col of columns">
+      <ngx-gantt-column name="{{col.name}}" width="{{col.width}}" >
+        <ng-template #cell let-item="item">
+          <ng-container *ngIf="col.isInput">
+<!--            should implement input based on data type-->
+            <input nz-input type="date" [formControl]="getControl(item.id, col.prop)">
+          </ng-container>
+          <ng-container *ngIf="!col.isInput">
+            <span class="task-title" (click)="showDetails(item.id)">{{ item[col.prop] }}</span>
+          </ng-container>
+        </ng-template>
+      </ngx-gantt-column>
+    </ng-container>
+  </ngx-gantt-table>
+</ngx-gantt>
+
+<nz-modal [(nzVisible)]="showDetailsModalVisible" nzTitle="Details" (nzOnOk)="handleShowDetailsModalOk()" (nzOnCancel)="handleShowDetailsModalOk()">
+  <ng-container *nzModalContent>
+    <div>
+      Title: {{clickedTask.title}}
+    </div>
+    <div>
+      Start: {{clickedTask.start}}
+    </div>
+    <div>
+      Finish: {{clickedTask.finish}}
+    </div>
+    <div>
+      Duration: {{clickedTask.duration}} days
+    </div>
+    <div>
+      Priority: {{clickedTask.priority}}
+    </div>
+  </ng-container>
+</nz-modal>
