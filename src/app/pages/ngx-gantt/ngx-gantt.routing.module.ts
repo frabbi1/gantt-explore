@@ -1,10 +1,10 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
-import {NgxGanttChartComponent} from './components/ngx-gantt-chart/ngx-gantt-chart.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {NgxGanttRootComponent} from './components/ngx-gantt-root/ngx-gantt-root.component';
 
 const routes: Routes = [
-  { path: '', component: NgxGanttChartComponent },
+  { path: '', component: NgxGanttRootComponent },
 ];
 
 @NgModule({

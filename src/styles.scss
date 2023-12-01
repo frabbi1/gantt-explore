@@ -1,1 +1,9 @@
 /* You can add global styles to this file, and also import other style files */
+.toolbar-card > .ant-card-body {
+  padding: 0 0 5px;
+}
+
+.toolbar-card {
+  border: none;
+  border-bottom: 2px solid #9f9e9e;
+}

@@ -1,8 +1,9 @@
-import {AfterViewInit, Component, OnInit, TemplateRef, ViewChild} from '@angular/core';
-import {GanttDragEvent, GanttItem, NgxGanttComponent} from '@worktile/gantt';
+import {AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
+import {GanttDragEvent, GanttItem, GanttViewType, NgxGanttComponent} from '@worktile/gantt';
 import {NgxGanttDataService} from '../../services/ngx-gantt-data.service';
 import {DataTypeEnum, IColumn, Task} from '../../models/models';
-import {FormBuilder, FormControl, FormGroup} from '@angular/forms';
+import {FormBuilder, FormControl} from '@angular/forms';
+import {NgxGanttToolbarOptionSyncService} from '../../services/ngx-gantt-toolbar-option-sync.service';
 
 @Component({
   selector: 'app-ngx-gantt-chart',
@@ -16,9 +17,12 @@ export class NgxGanttChartComponent implements OnInit, AfterViewInit{
   loading: boolean = false;
   clickedTask!: Task;
   showDetailsModalVisible: boolean = false;
+  viewType: GanttViewType = GanttViewType.month;
   @ViewChild('gantt') ganttComponent!: NgxGanttComponent;
 
-  constructor(private ganttDataService: NgxGanttDataService, private fb: FormBuilder) {}
+  constructor(private ganttDataService: NgxGanttDataService,
+              private fb: FormBuilder,
+              private toolbarOptionService: NgxGanttToolbarOptionSyncService) {}
 
   ngOnInit() {
     this.initTasksAndForm();
@@ -29,6 +33,10 @@ export class NgxGanttChartComponent implements OnInit, AfterViewInit{
   ngAfterViewInit() {
     const date = new Date('2022-12-15')
     setTimeout(() => this.ganttComponent.scrollToDate(Date.parse(date.toString())), 200);
+    this.toolbarOptionService.getViewModeSubject().subscribe(v => {
+      this.viewType = <GanttViewType> v.value;
+      this.items = [...this.items];
+    })
   }
 
   getControl(id: string, controlName: string): FormControl {
