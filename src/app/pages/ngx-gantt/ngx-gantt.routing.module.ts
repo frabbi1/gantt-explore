@@ -1,6 +1,6 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
-import {NgxGanttChartComponent} from './ngx-gantt-chart/ngx-gantt-chart.component';
+import {NgxGanttChartComponent} from './components/ngx-gantt-chart/ngx-gantt-chart.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 const routes: Routes = [

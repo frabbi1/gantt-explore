@@ -1,7 +1,7 @@
 import {AfterViewInit, Component, OnInit, TemplateRef, ViewChild} from '@angular/core';
 import {GanttDragEvent, GanttItem, NgxGanttComponent} from '@worktile/gantt';
-import {NgxGanttDataService} from '../services/ngx-gantt-data.service';
-import {DataTypeEnum, IColumn, Task} from '../models/models';
+import {NgxGanttDataService} from '../../services/ngx-gantt-data.service';
+import {DataTypeEnum, IColumn, Task} from '../../models/models';
 import {FormBuilder, FormControl, FormGroup} from '@angular/forms';
 
 @Component({
