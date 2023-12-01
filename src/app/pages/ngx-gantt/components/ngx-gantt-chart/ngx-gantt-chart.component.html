@@ -26,7 +26,7 @@
   <ng-template #bar let-item="item">
     <span
       nz-popover nzPopoverTitle="Details" [nzPopoverContent]="details"
-      style="color: #fff">&nbsp;&nbsp;{{ item.title }} </span>
+      style="color: #fff; position: sticky">&nbsp;&nbsp;{{ item.title }} </span>
     <ng-template #details>
       <div>
         Title: {{item.title}}
@@ -36,6 +36,9 @@
       </div>
       <div>
         Priority: {{getPriority(item.id)}}
+      </div>
+      <div>
+        Progress: {{getProgress(item.id)}}
       </div>
     </ng-template>
   </ng-template>
@@ -56,7 +59,10 @@
       Duration: {{clickedTask.duration}} days
     </div>
     <div>
-      Priority: {{clickedTask.priority}}
+      Priority: {{clickedTask.priority ?? 0}}
+    </div>
+    <div>
+      Progress: {{(clickedTask.progress ?? 1) * 100}}%
     </div>
   </ng-container>
 </nz-modal>

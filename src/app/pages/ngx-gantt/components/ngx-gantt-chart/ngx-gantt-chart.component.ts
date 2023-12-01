@@ -74,6 +74,11 @@ export class NgxGanttChartComponent implements OnInit, AfterViewInit{
     return this.getDaysDuration(new Date(task.start), new Date(task.finish));
   }
 
+  getProgress(id: string): string {
+    let progress =  this.tasks.find(t => t.id === id)?.progress ?? 1;
+    return `${progress * 100}%`;
+  }
+
   private initTasksAndForm(): void {
     this.tasks = this.ganttDataService.getTasks();
     this.tasks.forEach(task => {

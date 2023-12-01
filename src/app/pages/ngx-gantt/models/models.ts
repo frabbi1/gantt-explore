@@ -9,6 +9,7 @@ export interface Task {
   duration?: number; // in days
   links?: string[];
   formGroup?: FormGroup;
+  progress?: number;
 }
 
 export interface IColumn {

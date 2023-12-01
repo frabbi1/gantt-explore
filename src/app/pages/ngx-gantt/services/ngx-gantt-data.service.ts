@@ -17,7 +17,8 @@ export class NgxGanttDataService {
         end: Date.parse(task.finish.toString()),
         links: task.links?.map(l => <GanttLink>{
           link: l, color: '#777777'
-        })
+        }),
+        progress: task.progress,
     });
 
     return of(items);
@@ -39,21 +40,24 @@ export class NgxGanttDataService {
         start: '2023-02-15',
         finish: '2023-04-04',
         links: ['2'],
-        priority: 3
+        priority: 3,
+        progress: 0,
       },
       {
         id: '2',
         title: 'Task 2',
         start: '2023-04-04',
         finish: '2023-04-15',
-        priority: 3.5
+        priority: 3.5,
+        progress: 0.3,
       },
       {
         id: '3',
         title: 'Task 3',
         start: '2023-01-31',
         finish: '2023-04-15',
-        priority: 4
+        priority: 4,
+        progress: 0.8,
       }
     ];
   }
